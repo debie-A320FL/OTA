@@ -1,0 +1,13 @@
+{
+  "response": [
+    {
+      "datetime": 1645350654,
+      "filename": "lineage-17.1-20220220-UNOFFICIAL-a3y17lte.zip",
+      "id": "f5a1aad14784961d3bfd4df464ec24cd",
+      "romtype": "UNOFFICIAL",
+      "size": 617345696,
+      "url": "https://github.com/debie-A320FL/OTA/releases/download/TEST/lineage-17.1-20220220-UNOFFICIAL-a3y17lte.zip",
+      "version": "17.1"
+    }
+  ]
+}
