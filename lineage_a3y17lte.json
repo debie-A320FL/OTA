@@ -1,18 +1,13 @@
 {
   "response": [
     {
-      "maintainer": "debie"
-      "oem": "SAMSUNG"
-      "device": "Galaxy A3 2017"
-      "datetime": 1645351999,
+      "datetime": 1645355519,
       "filename": "lineage-17.1-20220220-UNOFFICIAL-a3y17lte.zip",
       "id": "f5a1aad14784961d3bfd4df464ec24cd",
       "romtype": "UNOFFICIAL",
       "size": 617345696,
       "url": "https://github.com/debie-A320FL/OTA/releases/download/TEST/lineage-17.1-20220220-UNOFFICIAL-a3y17lte.zip",
       "version": "17.1"
-      "forum": "https://forum.xda-developers.com/t/unofficial-rom-a320fl-f-y-lineageos-17-x-10-0-64-bit-treble.4054921/"
-      "telegram": "https://t.me/joinchat/EjsGTkzDb8zJ6QnAUZyAEA"
     }
   ]
 }
