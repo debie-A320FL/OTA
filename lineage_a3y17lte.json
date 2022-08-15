@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": 1658082838,
-      "filename": "lineage-17.1-20220717-NEW-UNOFFICIAL-a3y17lte.zip",
-      "id": "99725ef2a50aadfad1212a5f4d23f35f",
+      "datetime": 1660590402,
+      "filename": "lineage-17.1-20220815-UNOFFICIAL-a3y17lte.zip",
+      "id": "ae6d091f89409769374de581907c2776",
       "romtype": "UNOFFICIAL",
-      "size": 674375566,
-      "url": "https://github.com/debie-A320FL/OTA/releases/download/Q.22.07/lineage-17.1-20220717-NEW-UNOFFICIAL-a3y17lte.zip",
+      "size": 689412446,
+      "url": "https://github.com/debie-A320FL/OTA/releases/download/Q.22.08/lineage-17.1-20220815-UNOFFICIAL-a3y17lte.zip",
       "version": "17.1"
     }
   ]
