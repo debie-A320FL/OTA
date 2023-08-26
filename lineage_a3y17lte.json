@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": 1692715472,
-      "filename": "lineage-17.1-20230823-UNOFFICIAL-a3y17lte-August-3.zip",
+      "datetime": "2023-08-26T20:00:56Z",
+      "filename": "ed",
       "id": "de9a8fa5d2d0678a2609d1c55b9a679a",
       "romtype": "UNOFFICIAL",
       "size": 684230705,
-      "url": "https://github.com/debie-A320FL/OTA/releases/download/Q.23.08/lineage-17.1-20230823-UNOFFICIAL-a3y17lte-August-3.zip",
+      "url": "https://api.github.com/repos/debie-A320FL/OTA/zipball/TESTDEde",
       "version": "17.1"
     }
   ]
