@@ -1,0 +1,51 @@
+name: Update OTA JSON
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up branch
+        run: |
+          git fetch
+          git checkout -B test origin/test
+
+      - name: Setup Environment
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Update OTA JSON file
+        run: |
+          python -c "
+          import json
+          import os
+          with open('lineage_a3y17lte.json', 'r') as f:
+              data = json.load(f)
+          data['response'][0]['url'] = os.environ['RELEASE_URL']
+          data['response'][0]['filename'] = os.environ['RELEASE_NAME']
+          data['response'][0]['datetime'] = os.environ['RELEASE_TIMESTAMP']
+          with open('lineage_a3y17lte.json', 'w') as f:
+              json.dump(data, f, indent=2)
+          "
+        env:
+          RELEASE_URL: ${{ github.event.release.zipball_url }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_TIMESTAMP: ${{ github.event.release.published_at }}
+      
+      - name: Commit and push changes
+        run: |
+          git add lineage_a3y17lte.json
+          git commit -m "Update OTA JSON with new release"
+          git push --set-upstream origin test
