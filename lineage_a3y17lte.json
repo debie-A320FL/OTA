@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": 1693083674,
+      "datetime": 1693084074,
       "filename": "SimpleV1.3.img",
       "id": "de9a8fa5d2d0678a2609d1c55b9a679a",
       "romtype": "UNOFFICIAL",
       "size": 684230705,
-      "url": "https://github.com/debie-A320FL/OTA/releases/download/TEST9999999999999999999999/SimpleV1.3.img",
+      "url": "https://github.com/debie-A320FL/OTA/releases/download/TEST5555555555555555/SimpleV1.3.img",
       "version": "17.1"
     }
   ]
