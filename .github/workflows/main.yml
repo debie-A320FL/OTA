@@ -1,0 +1,86 @@
+name: Update OTA JSON
+on:
+  release:
+    types:
+      - edited
+      - released
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check release title and tag
+        id: check_title_tag
+        run: |
+          if [[ "${{ github.event.release.name }}" == *LineageOS* ]] && ! [[ "${{ github.event.release.tag_name }}" =~ [Tt][Ee][Ss][Tt] ]]; then
+            echo "has_lineageos=true" >> $GITHUB_ENV
+          else
+            echo "Skipping. The title does not contain LineageOS or the tag contains the word 'test'."
+            echo "has_lineageos=false" >> $GITHUB_ENV
+            exit 0
+          fi
+      
+      - name: Checkout repository
+        if: env.has_lineageos == 'true'
+        uses: actions/checkout@v2
+
+      - name: Set up branch
+        if: env.has_lineageos == 'true'
+        run: |
+          git fetch
+          git checkout -B test origin/test
+
+      - name: Setup Environment
+        if: env.has_lineageos == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Set up Python
+        if: env.has_lineageos == 'true'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install Python Packages
+        if: env.has_lineageos == 'true'
+        run: pip install python-dateutil pytz
+        
+      - name: Get lineage attachment URL
+        if: env.has_lineageos == 'true'
+        run: |
+          RELEASE_URL=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets | jq -r '.[] | select(.name | test("lineage"; "i")) | .browser_download_url')
+          echo "RELEASE_URL=${RELEASE_URL}" >> $GITHUB_ENV
+      
+      - name: Update OTA JSON file
+        if: env.has_lineageos == 'true'
+        run: |
+          python -c "
+          import json
+          import os
+          from datetime import datetime
+          import pytz
+          from dateutil import parser
+          with open('lineage_a3y17lte.json', 'r') as f:
+              data = json.load(f)
+          dt = parser.parse(os.environ['RELEASE_TIMESTAMP']).astimezone(pytz.UTC)
+          timestamp = int(dt.timestamp())
+          data['response'][0]['datetime'] = timestamp
+          data['response'][0]['url'] = os.environ['RELEASE_URL']
+          data['response'][0]['filename'] = os.environ['RELEASE_NAME']
+          with open('lineage_a3y17lte.json', 'w') as f:
+              json.dump(data, f, indent=2)
+          "
+        env:
+          RELEASE_URL: ${{ env.RELEASE_URL }}
+          RELEASE_NAME: ${{ github.event.release.assets[0].name }}
+          RELEASE_TIMESTAMP: ${{ github.event.release.published_at }}
+    
+      - name: Commit and push changes
+        if: env.has_lineageos == 'true'
+        run: |
+          git add lineage_a3y17lte.json
+          git status # For debugging
+          git diff --cached # For debugging
+          git commit -m "Update OTA JSON with new release" || echo "No changes to commit" # For debugging
+          git push origin test || echo "Failed to push" # For debugging
