@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": 1693125626,
-      "filename": "lineageos-kernel.img",
+      "datetime": 1693126127,
+      "filename": "SimpleV1.3.img",
       "id": "de9a8fa5d2d0678a2609d1c55b9a679a",
       "romtype": "UNOFFICIAL",
       "size": 684230705,
-      "url": "https://github.com/debie-A320FL/OTA/releases/download/TEST123/lineageos-kernel.img",
+      "url": "",
       "version": "17.1"
     }
   ]
