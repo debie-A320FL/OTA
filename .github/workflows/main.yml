@@ -28,7 +28,7 @@ jobs:
         if: env.has_lineageos == 'true'
         run: |
           git fetch
-          git checkout -B test origin/test
+          git checkout master
 
       - name: Setup Environment
         if: env.has_lineageos == 'true'
@@ -82,5 +82,6 @@ jobs:
           git add lineage_a3y17lte.json
           git status # For debugging
           git diff --cached # For debugging
-          git commit -m "Update OTA JSON with new release" || echo "No changes to commit" # For debugging
-          git push origin test || echo "Failed to push" # For debugging
+          commit_message="Update JSON for $(echo ${{ github.event.release.name }} | sed -E 's/^([^-]+) -.*$/\1/') OTA update"
+          git commit -m "$commit_message" || echo "No changes to commit" # For debugging
+          git push origin master || echo "Failed to push" # For debugging
