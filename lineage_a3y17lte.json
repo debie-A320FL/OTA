@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": 1693127886,
-      "filename": "lineageos-kernel.img",
+      "datetime": 1693129668,
+      "filename": "lineage-17.1-20220513-UNOFFICIAL-a3y17lte.zip",
       "id": "de9a8fa5d2d0678a2609d1c55b9a679a",
       "romtype": "UNOFFICIAL",
       "size": 684230705,
-      "url": "https://github.com/debie-A320FL/OTA/releases/download/okkk/lineageos-kernel.img",
+      "url": "https://github.com/debie-A320FL/OTA/releases/download/Q.22.05/lineage-17.1-20220513-UNOFFICIAL-a3y17lte.zip",
       "version": "17.1"
     }
   ]
