@@ -12,7 +12,7 @@ jobs:
       - name: Check release title and tag
         id: check_title_tag
         run: |
-          if [[ "${{ github.event.release.name }}" == *LineageOS* ]] && ! [[ "${{ github.event.release.tag_name }}" =~ [Tt][Ee][Ss][Tt] ]] && [[ "${{ github.event.release.prerelease }}" == "false" ]]; then
+          if [[ "${{ github.event.release.name }}" == *LineageOS* ]] && ! [[ "${{ github.event.release.tag_name }}" =~ [Tt][Ee][Ss][Tt] ]] && ! [[ "${{ github.event.release.name }}" =~ [Tt][Ee][Ss][Tt] ]] && [[ "${{ github.event.release.prerelease }}" == "false" ]]; then
             echo "has_lineageos=true" >> $GITHUB_ENV
           else
             echo "Skipping. The title does not contain LineageOS or the tag contains the word 'test', or it is a pre-release."
